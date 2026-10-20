@@ -264,14 +264,14 @@ function buildGarden() {
 
   const flowerItems = [];
 
-  // TẦNG 1: Dưới thấp ôm chân vườn (Thoáng đãng, có thân cành vươn lên)
-  const countT1 = isMobile ? 8 : 14;
+  // TẦNG 1: Dưới thấp ôm chân vườn (Dày dặn, nhiều hoa như ban đầu)
+  const countT1 = isMobile ? 10 : 18;
   for (let i = 0; i < countT1; i++) {
     const xPct = (i / (countT1 - 1)) * 96 + 2 + (rand() * 4 - 2);
     flowerItems.push({
       xPct: Math.max(1, Math.min(99, xPct)),
-      sizePx: Math.floor((100 + rand() * 32) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.16 + rand() * 0.12)),
+      sizePx: Math.floor((95 + rand() * 30) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.15 + rand() * 0.13)),
       type: 'rose',
       layer: 28,
       palette: gardenPalette(i),
@@ -282,13 +282,13 @@ function buildGarden() {
   }
 
   // TẦNG 2: Tầm trung cận cảnh
-  const countT2 = isMobile ? 8 : 13;
+  const countT2 = isMobile ? 9 : 16;
   for (let i = 0; i < countT2; i++) {
     const xPct = ((i + 0.5) / countT2) * 94 + 3 + (rand() * 4 - 2);
     flowerItems.push({
       xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((110 + rand() * 30) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.30 + rand() * 0.14)),
+      sizePx: Math.floor((105 + rand() * 28) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.28 + rand() * 0.14)),
       type: 'rose',
       layer: 22,
       palette: gardenPalette(i + 2),
@@ -299,14 +299,14 @@ function buildGarden() {
   }
 
   // TẦNG 3: Tầng hoa vươn cao hé thân lá xanh
-  const countT3 = isMobile ? 7 : 12;
+  const countT3 = isMobile ? 8 : 14;
   for (let i = 0; i < countT3; i++) {
     const xPct = (i / (countT3 - 1)) * 94 + 3 + (rand() * 4 - 2);
-    if (Math.abs(xPct - 50) < 7) continue;
+    if (Math.abs(xPct - 50) < 6) continue;
     flowerItems.push({
       xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((88 + rand() * 26) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.46 + rand() * 0.14)),
+      sizePx: Math.floor((85 + rand() * 25) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.44 + rand() * 0.15)),
       type: 'rose',
       layer: 16,
       palette: gardenPalette(i + 4),
@@ -317,16 +317,16 @@ function buildGarden() {
   }
 
   // TẦNG 4: Hoa cúc xoắn và nụ hoa cao thanh thoát trên nền trời
-  const countT4 = isMobile ? 5 : 9;
+  const countT4 = isMobile ? 6 : 11;
   for (let i = 0; i < countT4; i++) {
     const xPct = (i / (countT4 - 1)) * 92 + 4 + (rand() * 4 - 2);
-    if (Math.abs(xPct - 50) < 9) continue;
+    if (Math.abs(xPct - 50) < 7) continue;
     const r = rand();
     const type = r < 0.4 ? 'button' : (r < 0.75 ? 'bud' : 'rose');
     flowerItems.push({
       xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((type === 'bud' ? 46 : 60 + rand() * 25) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.62 + rand() * 0.16)),
+      sizePx: Math.floor((type === 'bud' ? 44 : 58 + rand() * 24) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.60 + rand() * 0.17)),
       type,
       layer: 10,
       palette: gardenPalette(i + 1),
@@ -337,13 +337,13 @@ function buildGarden() {
   }
 
   // NỤ HOA ĐIỂM XUYẾT MÀU SẮC
-  const budCount = isMobile ? 4 : 8;
+  const budCount = isMobile ? 5 : 9;
   for (let i = 0; i < budCount; i++) {
     const xPct = ((i + 0.5) / budCount) * 94 + 3 + (rand() * 4 - 2);
     flowerItems.push({
       xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((42 + rand() * 14) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.35 + rand() * 0.25)),
+      sizePx: Math.floor((40 + rand() * 14) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.34 + rand() * 0.25)),
       type: 'bud',
       budVariant: BUD_VARIANTS[i % BUD_VARIANTS.length],
       layer: 14,
@@ -354,23 +354,36 @@ function buildGarden() {
     });
   }
 
-  // 5 ĐÓA HOA CÔNG CHÚA CỦA THU PHƯƠNG - TO VÀ RÕ NÉT CẬN MẶT
+  // 11 ĐÓA HOA CÔNG CHÚA CỦA THU PHƯƠNG - HIỂN THỊ ĐỦ TRỌN BỘ 11 ẢNH TRÊN HOA!
   const photos = PHUONG_CONFIG.photos;
-  const cameoSize = Math.floor(isMobile ? 122 * sizeScale : 155 * sizeScale);
+  const cameoSize = Math.floor(isMobile ? 116 * sizeScale : 148 * sizeScale);
 
   const goldenCameoPositions = isMobile ? [
-    { xPct: 18, hRatio: 0.38, photoIdx: 0, layer: 36 },
-    { xPct: 82, hRatio: 0.38, photoIdx: 1, layer: 36 },
-    { xPct: 32, hRatio: 0.24, photoIdx: 2, layer: 38 },
-    { xPct: 68, hRatio: 0.24, photoIdx: 3, layer: 38 },
-    { xPct: 50, hRatio: 0.55, photoIdx: 4, layer: 35 }
+    // 11 vị trí hoa trên Mobile phân tầng nhấp nhô tuyệt đẹp, không chạm nhau
+    { xPct: 14, hRatio: 0.58, photoIdx: 0, layer: 34, bend: -3 },
+    { xPct: 50, hRatio: 0.62, photoIdx: 1, layer: 34, bend: 0 },
+    { xPct: 86, hRatio: 0.58, photoIdx: 2, layer: 34, bend: 3 },
+    { xPct: 28, hRatio: 0.44, photoIdx: 3, layer: 36, bend: -4 },
+    { xPct: 72, hRatio: 0.44, photoIdx: 4, layer: 36, bend: 4 },
+    { xPct: 10, hRatio: 0.32, photoIdx: 5, layer: 38, bend: -3 },
+    { xPct: 50, hRatio: 0.34, photoIdx: 6, layer: 38, bend: 0 },
+    { xPct: 90, hRatio: 0.32, photoIdx: 7, layer: 38, bend: 3 },
+    { xPct: 26, hRatio: 0.19, photoIdx: 8, layer: 42, bend: -2 },
+    { xPct: 50, hRatio: 0.16, photoIdx: 9, layer: 44, bend: 0 },
+    { xPct: 74, hRatio: 0.19, photoIdx: 10, layer: 42, bend: 2 }
   ] : [
-    { xPct: 16, hRatio: 0.42, photoIdx: 0, layer: 36 },
-    { xPct: 34, hRatio: 0.26, photoIdx: 1, layer: 38 },
-    { xPct: 66, hRatio: 0.26, photoIdx: 2, layer: 38 },
-    { xPct: 84, hRatio: 0.42, photoIdx: 3, layer: 36 },
-    { xPct: 25, hRatio: 0.58, photoIdx: 4, layer: 35 },
-    { xPct: 75, hRatio: 0.58, photoIdx: 5, layer: 35 }
+    // 11 vị trí hoa trên Desktop trải đều hình sóng đôi từ trái sang phải
+    { xPct: 7,  hRatio: 0.46, photoIdx: 0, layer: 36, bend: -4 },
+    { xPct: 15, hRatio: 0.28, photoIdx: 1, layer: 38, bend: 3 },
+    { xPct: 24, hRatio: 0.58, photoIdx: 2, layer: 34, bend: -5 },
+    { xPct: 33, hRatio: 0.36, photoIdx: 3, layer: 38, bend: 4 },
+    { xPct: 42, hRatio: 0.22, photoIdx: 4, layer: 40, bend: -3 },
+    { xPct: 50, hRatio: 0.62, photoIdx: 5, layer: 35, bend: 0 },
+    { xPct: 58, hRatio: 0.22, photoIdx: 6, layer: 40, bend: 3 },
+    { xPct: 67, hRatio: 0.36, photoIdx: 7, layer: 38, bend: -4 },
+    { xPct: 76, hRatio: 0.58, photoIdx: 8, layer: 34, bend: 5 },
+    { xPct: 85, hRatio: 0.28, photoIdx: 9, layer: 38, bend: -3 },
+    { xPct: 93, hRatio: 0.46, photoIdx: 10, layer: 36, bend: 4 }
   ];
 
   goldenCameoPositions.forEach((pos, idx) => {
@@ -382,7 +395,7 @@ function buildGarden() {
       type: 'rose',
       layer: pos.layer,
       palette: gardenPalette(idx * 2),
-      bend: (idx % 2 === 0 ? -4 : 4),
+      bend: pos.bend || (idx % 2 === 0 ? -4 : 4),
       stemLengthPx: Math.floor((90 + (idx % 2) * 20) * sizeScale),
       hasStem: true,
       photoFriend: photoItem.id
