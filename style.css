@@ -2715,3 +2715,112 @@ html, body {
   transform: scale(1.08);
 }
 
+
+
+/* ==========================================================================
+   HIEU UNG HOANH TRANG & BAT NGO 20/10 (GRAND MAGIC FX)
+   ========================================================================== */
+.btn-magic-storm {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #feca57 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(255, 117, 140, 0.45) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  animation: magicPulse 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes magicPulse {
+  0% { transform: scale(1); box-shadow: 0 4px 16px rgba(255, 117, 140, 0.4); }
+  100% { transform: scale(1.06); box-shadow: 0 8px 26px rgba(254, 202, 87, 0.6); }
+}
+
+.btn-friend-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #ad2852;
+  border: 1.5px solid #ffd0dc;
+  border-radius: 9999px;
+  padding: 10px 18px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(180, 50, 80, 0.12);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  margin-left: 8px;
+}
+
+.btn-friend-download:hover {
+  background: #fff5f7;
+  border-color: #f78da7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(180, 50, 80, 0.2);
+}
+
+.friend-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Bang chuc mung hoanh trang bay tren troi */
+.royal-celebration-banner {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 240, 245, 0.94) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid rgba(255, 215, 0, 0.8);
+  border-radius: 30px;
+  padding: 16px 32px;
+  text-align: center;
+  color: #6a1b32;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 16px 48px rgba(220, 60, 100, 0.35), 0 0 24px rgba(255, 215, 0, 0.5);
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  animation: bannerPop 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bannerPop {
+  0% { opacity: 0; transform: translate(-50%, -30%) scale(0.6); }
+  15% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  25% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -70%) scale(0.85); }
+}
+
+@media (max-width: 768px) {
+  .royal-celebration-banner {
+    width: 90vw;
+    font-size: 15px;
+    padding: 12px 18px;
+  }
+}
+
+/* Trai tim bay tung toe khi bam ban tim */
+.floating-heart-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 220;
+  font-size: 24px;
+  animation: floatHeartUp 1.8s cubic-bezier(0.18, 0.89, 0.32, 1) forwards;
+}
+
+@keyframes floatHeartUp {
+  0% { opacity: 1; transform: translate(-50%, 0) scale(0.5); }
+  50% { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px)), -70px) scale(1.3); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px) * 1.5), -160px) scale(0.8); }
+}
+

@@ -248,118 +248,166 @@ function buildGarden() {
   container.innerHTML = '';
   gardenFlowersData = [];
 
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-  const isMobile = viewportWidth < 768;
-  const containerHeight = viewportHeight * (isMobile ? 0.72 : 0.65);
-  const sizeScale = isMobile ? Math.max(0.68, Math.min(1.0, viewportWidth / 480)) : Math.max(0.85, Math.min(1.2, viewportWidth / 1440));
+  // Seeded random để bố cục ổn định và hài hòa mỗi lần mở
+  let seed = 20261020;
+  const rand = () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
 
-  function rand() {
-    return Math.random();
-  }
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const isMobile = width <= 768;
+  const containerHeight = height * (isMobile ? 0.72 : 0.65);
+  const sizeScale = isMobile
+    ? Math.min(0.88, Math.max(0.68, width / 480))
+    : Math.min(1.4, Math.max(0.85, width / 1280));
 
-  function gardenPalette(i) {
-    return COLOR_PALETTES[i % COLOR_PALETTES.length];
-  }
-
+  const gardenPalette = i => COLOR_PALETTES[i % COLOR_PALETTES.length];
   const flowerItems = [];
 
-  // TẦNG 1: Dưới thấp ôm chân vườn (Dày dặn, nhiều hoa như ban đầu)
-  const countT1 = isMobile ? 10 : 18;
+  // =========================================================================
+  // VƯỜN HOA CHI CHÍT DÀY ĐẶC NHƯ BAN ĐẦU (~150-180 HOA TRÊN DESKTOP, ~90 TRÊN MOBILE)
+  // =========================================================================
+  const countT1 = Math.round(Math.max(16, Math.min(32, width / 44)));
+  const countT2 = Math.round(Math.max(18, Math.min(36, width / 40)));
+  const countT3 = Math.round(Math.max(18, Math.min(36, width / 40)));
+  const countT4 = Math.round(Math.max(16, Math.min(34, width / 38)));
+  const countT5 = Math.round(Math.max(10, Math.min(18, width / 80)));
+  const fillerCount = Math.round(Math.max(16, Math.min(32, width / 42)));
+  const accentBudCount = isMobile ? 8 : 16;
+
+  // TẦNG 1: Tiền cảnh phủ sát đáy (hoa to, dày đặc ôm trọn chân vườn)
   for (let i = 0; i < countT1; i++) {
     const xPct = (i / (countT1 - 1)) * 96 + 2 + (rand() * 4 - 2);
     flowerItems.push({
       xPct: Math.max(1, Math.min(99, xPct)),
-      sizePx: Math.floor((95 + rand() * 30) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.15 + rand() * 0.13)),
+      sizePx: Math.floor((125 + rand() * 38) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.05 + rand() * 0.14)),
       type: 'rose',
       layer: 28,
       palette: gardenPalette(i),
       bend: (rand() - 0.5) * 16,
-      stemLengthPx: Math.floor((65 + rand() * 25) * sizeScale),
+      stemLengthPx: Math.floor((60 + rand() * 25) * sizeScale),
       hasStem: true
     });
   }
 
-  // TẦNG 2: Tầm trung cận cảnh
-  const countT2 = isMobile ? 9 : 16;
+  // TẦNG 2: Hoa lớn tầng trung lấp toàn bộ khoảng trống
   for (let i = 0; i < countT2; i++) {
     const xPct = ((i + 0.5) / countT2) * 94 + 3 + (rand() * 4 - 2);
     flowerItems.push({
-      xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((105 + rand() * 28) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.28 + rand() * 0.14)),
+      xPct: Math.max(1, Math.min(99, xPct)),
+      sizePx: Math.floor((115 + rand() * 36) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.18 + rand() * 0.17)),
       type: 'rose',
       layer: 22,
       palette: gardenPalette(i + 2),
       bend: (rand() - 0.5) * 20,
-      stemLengthPx: Math.floor((80 + rand() * 30) * sizeScale),
+      stemLengthPx: Math.floor((75 + rand() * 30) * sizeScale),
       hasStem: true
     });
   }
 
-  // TẦNG 3: Tầng hoa vươn cao hé thân lá xanh
-  const countT3 = isMobile ? 8 : 14;
+  // TẦNG 3: Hoa hồng nở rộ đan xen cành lá xanh vươn cao
   for (let i = 0; i < countT3; i++) {
-    const xPct = (i / (countT3 - 1)) * 94 + 3 + (rand() * 4 - 2);
-    if (Math.abs(xPct - 50) < 6) continue;
+    const xPct = (i / (countT3 - 1)) * 92 + 4 + (rand() * 5 - 2.5);
+    const isBud = rand() < 0.16;
     flowerItems.push({
-      xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((85 + rand() * 25) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.44 + rand() * 0.15)),
-      type: 'rose',
+      xPct: Math.max(1, Math.min(99, xPct)),
+      sizePx: Math.floor((isBud ? 52 : 92 + rand() * 38) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.32 + rand() * 0.19)),
+      type: isBud ? 'bud' : 'rose',
       layer: 16,
-      palette: gardenPalette(i + 4),
+      palette: isBud ? (rand() < 0.5 ? COLOR_PALETTES[3] : COLOR_PALETTES[1]) : gardenPalette(i + 4),
       bend: (rand() - 0.5) * 22,
-      stemLengthPx: Math.floor((105 + rand() * 35) * sizeScale),
+      stemLengthPx: Math.floor((95 + rand() * 35) * sizeScale),
       hasStem: true
     });
   }
 
-  // TẦNG 4: Hoa cúc xoắn và nụ hoa cao thanh thoát trên nền trời
-  const countT4 = isMobile ? 6 : 11;
+  // TẦNG 4: Hoa cúc xoắn, hoa hồng nền trời
   for (let i = 0; i < countT4; i++) {
-    const xPct = (i / (countT4 - 1)) * 92 + 4 + (rand() * 4 - 2);
-    if (Math.abs(xPct - 50) < 7) continue;
+    const xPct = (i / (countT4 - 1)) * 92 + 4 + (rand() * 6 - 3);
     const r = rand();
-    const type = r < 0.4 ? 'button' : (r < 0.75 ? 'bud' : 'rose');
+    const type = r < 0.2 ? 'button' : (r < 0.4 ? 'bud' : 'rose');
     flowerItems.push({
-      xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((type === 'bud' ? 44 : 58 + rand() * 24) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.60 + rand() * 0.17)),
+      xPct: Math.max(1, Math.min(99, xPct)),
+      sizePx: Math.floor((type === 'button' ? 56 : (type === 'bud' ? 50 : 75 + rand() * 30)) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.48 + rand() * 0.18)),
       type,
-      layer: 10,
+      layer: 11,
       palette: gardenPalette(i + 1),
       bend: (rand() - 0.5) * 25,
-      stemLengthPx: Math.floor((120 + rand() * 30) * sizeScale),
+      stemLengthPx: Math.floor((110 + rand() * 35) * sizeScale),
       hasStem: true
     });
   }
 
-  // NỤ HOA ĐIỂM XUYẾT MÀU SẮC
-  const budCount = isMobile ? 5 : 9;
-  for (let i = 0; i < budCount; i++) {
-    const xPct = ((i + 0.5) / budCount) * 94 + 3 + (rand() * 4 - 2);
+  // TẦNG 5: Nụ hoa và hoa vươn cao hai bên nền trời
+  for (let i = 0; i < countT5; i++) {
+    const xPct = (i / (countT5 - 1)) * 94 + 3 + (rand() * 3 - 1.5);
+    if (Math.abs(xPct - 50) < 8) continue;
+    const r = rand();
+    const type = r < 0.3 ? 'button' : (r < 0.5 ? 'bud' : 'rose');
     flowerItems.push({
-      xPct: Math.max(2, Math.min(98, xPct)),
-      sizePx: Math.floor((40 + rand() * 14) * sizeScale),
-      heightPx: Math.floor(containerHeight * (0.34 + rand() * 0.25)),
+      xPct: Math.max(1, Math.min(99, xPct)),
+      sizePx: Math.floor((type === 'bud' ? 44 : 54 + rand() * 26) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.62 + rand() * 0.15)),
+      type,
+      layer: 7,
+      palette: gardenPalette(i + 5),
+      bend: (rand() - 0.5) * 25,
+      stemLengthPx: Math.floor((125 + rand() * 30) * sizeScale),
+      hasStem: true
+    });
+  }
+
+  // HAI DẢI HOA FILLER LẤP KÍN MỌI KẼ HỞ (HOA DÀY ĐẶC KHÔNG BỊ TRỐNG)
+  for (let row = 0; row < 2; row++) {
+    for (let i = 0; i < fillerCount; i++) {
+      const xPct = ((i + (row ? 0.68 : 0.18)) / fillerCount) * 98 + 1 + (rand() * 3 - 1.5);
+      const heightRatio = row === 0 ? 0.22 + rand() * 0.18 : 0.40 + rand() * 0.18;
+      const baseSize = row === 0 ? 108 : 88;
+      flowerItems.push({
+        xPct: Math.max(1, Math.min(99, xPct)),
+        sizePx: Math.floor((baseSize + rand() * 36) * sizeScale),
+        heightPx: Math.floor(containerHeight * heightRatio),
+        type: 'rose',
+        layer: row === 0 ? 19 : 13,
+        palette: gardenPalette(i + row * 3),
+        bend: (rand() - 0.5) * 12,
+        stemLengthPx: Math.floor((65 + rand() * 25) * sizeScale),
+        hasStem: true
+      });
+    }
+  }
+
+  // NỤ HOA XEN KẼ LẤP LÁNH
+  for (let i = 0; i < accentBudCount; i++) {
+    const xPct = ((i + 0.5) / accentBudCount) * 96 + 2 + (rand() * 4 - 2);
+    flowerItems.push({
+      xPct: Math.max(1, Math.min(99, xPct)),
+      sizePx: Math.floor((40 + rand() * 15) * sizeScale),
+      heightPx: Math.floor(containerHeight * (0.35 + rand() * 0.25)),
       type: 'bud',
       budVariant: BUD_VARIANTS[i % BUD_VARIANTS.length],
-      layer: 14,
+      layer: 15,
       palette: COLOR_PALETTES[3],
-      bend: (rand() - 0.5) * 16,
-      stemLengthPx: Math.floor((85 + rand() * 25) * sizeScale),
+      bend: (rand() - 0.5) * 18,
+      stemLengthPx: Math.floor((70 + rand() * 22) * sizeScale),
       hasStem: true
     });
   }
 
-  // 11 ĐÓA HOA CÔNG CHÚA CỦA THU PHƯƠNG - HIỂN THỊ ĐỦ TRỌN BỘ 11 ẢNH TRÊN HOA!
-  const photos = PHUONG_CONFIG.photos;
-  const cameoSize = Math.floor(isMobile ? 116 * sizeScale : 148 * sizeScale);
+  // =========================================================================
+  // ĐÓA HOA CAMEO NÀNG CÔNG CHÚA - NỔI BẬT RỰC RỠ, HIỂN THỊ ĐỦ TRỌN BỘ ẢNH!
+  // =========================================================================
+  const photos = currentFriend.photos;
+  const cameoSize = Math.floor(isMobile ? 120 * sizeScale : 152 * sizeScale);
 
-  const goldenCameoPositions = isMobile ? [
-    // 11 vị trí hoa trên Mobile phân tầng nhấp nhô tuyệt đẹp, không chạm nhau
+    const goldenCameoPositions = isMobile ? [
+    // 11 vị trí hoa trên Mobile phân tầng nhấp nhô tuyệt đẹp khắp màn hình
     { xPct: 14, hRatio: 0.58, photoIdx: 0, layer: 34, bend: -3 },
     { xPct: 50, hRatio: 0.62, photoIdx: 1, layer: 34, bend: 0 },
     { xPct: 86, hRatio: 0.58, photoIdx: 2, layer: 34, bend: 3 },
@@ -393,16 +441,16 @@ function buildGarden() {
       sizePx: cameoSize,
       heightPx: Math.floor(containerHeight * pos.hRatio),
       type: 'rose',
-      layer: pos.layer,
+      layer: pos.layer || 38,
       palette: gardenPalette(idx * 2),
       bend: pos.bend || (idx % 2 === 0 ? -4 : 4),
-      stemLengthPx: Math.floor((90 + (idx % 2) * 20) * sizeScale),
+      stemLengthPx: Math.floor((95 + (idx % 2) * 20) * sizeScale),
       hasStem: true,
       photoFriend: photoItem.id
     });
   });
 
-  // TẠO PHẦN TỬ DOM CHO TOÀN BỘ KHU VƯỜN
+// TẠO PHẦN TỬ DOM CHO TOÀN BỘ KHU VƯỜN
   let budIndex = 0;
   const fragment = document.createDocumentFragment();
 
@@ -940,15 +988,26 @@ function spawnBurstParticles(x, y, count = 16) {
 }
 
 function showFlowerLoveWhisper(x, y) {
-  const whispers = ['Yêu đời 🌸', 'Rạng ngời ✨', 'Xinh đẹp 💖', 'Hạnh phúc 🌷', 'Bình an 🌿', 'Tỏa sáng 👑'];
+  const whispers = [
+    'Xinh đẹp rạng ngời 🌸',
+    'Nụ cười tỏa nắng ☀️',
+    'Công chúa ngọt ngào 👑',
+    'Hạnh phúc ngập tràn 💖',
+    'Vạn sự như ý 🌷',
+    'Mãi mãi đáng yêu 🎀',
+    'Bình an & Rạng rỡ ✨',
+    'Nàng thơ kiêu sa 💐',
+    'Yêu đời tươi vui 💕',
+    'Duyên dáng tự tin 🌹'
+  ];
   const text = whispers[Math.floor(Math.random() * whispers.length)];
   const el = document.createElement('div');
-  el.className = 'flower-love-whisper';
+  el.className = 'flower-whisper-bubble';
   el.textContent = text;
   el.style.left = `${x}px`;
   el.style.top = `${y}px`;
   document.body.appendChild(el);
-  setTimeout(() => { el.remove(); }, 1800);
+  setTimeout(() => { el.remove(); }, 2000);
 }
 
 function loopFX() {
@@ -1017,6 +1076,76 @@ function setupButterflies() {
 // =============================================================================
 // 11. KHỞI CHẠY KHI TẢI XONG TRANG WEB
 // =============================================================================
+// =============================================================================
+// TÍNH NĂNG BẤT NGỜ HOÀNH TRÁNG: CƠN MƯA YÊU THƯƠNG & BÃO TIM PHÁO HOA
+// =============================================================================
+function triggerLoveStorm() {
+  playBloomArpeggio();
+  startPetalRain();
+
+  // 1. Pháo hoa sóng chấn động vàng kim
+  const heroFlower = document.getElementById('hero-flower');
+  if (heroFlower) {
+    const shockwave = document.createElement('div');
+    shockwave.className = 'grand-shockwave';
+    heroFlower.appendChild(shockwave);
+    setTimeout(() => shockwave.remove(), 1800);
+  }
+
+  // 2. Tung hạt pháo hoa khắp màn hình
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight * 0.45;
+  spawnBurstParticles(cx, cy, 45);
+  spawnBurstParticles(cx - 150, cy + 50, 25);
+  spawnBurstParticles(cx + 150, cy + 50, 25);
+
+  // 3. Hiển thị bảng chúc mừng hoàng gia bay lượn
+  const existingBanner = document.querySelector('.royal-celebration-banner');
+  if (existingBanner) existingBanner.remove();
+
+  const banner = document.createElement('div');
+  banner.className = 'royal-celebration-banner';
+  banner.innerHTML = `🌸 Chúc Mừng 20/10 Thu Phương! 🌸<br><span style="font-size: 0.8em; font-weight: normal; color: #a43258;">Cả một vườn thương ngập tràn nụ cười & hạnh phúc ngọt ngào nhất! 👑💖</span>`;
+  document.body.appendChild(banner);
+  setTimeout(() => banner.remove(), 4200);
+
+  // 4. Rung rinh tất cả hoa trong vườn
+  const flowers = document.querySelectorAll('.garden-flower');
+  flowers.forEach((fl, idx) => {
+    setTimeout(() => {
+      fl.style.transform = 'scale(1.15) translateY(-8px)';
+      setTimeout(() => { fl.style.transform = ''; }, 320);
+    }, (idx % 12) * 50);
+  });
+}
+
+function downloadCurrentPhoto() {
+  const photos = currentFriend.photos;
+  const item = photos[currentPhotoIndex] || photos[0];
+  const link = document.createElement('a');
+  link.href = item.full;
+  link.download = `20-10-phuong-${String(item.id).padStart(2, '0')}.jpg`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  showToast('📥 Đã tải ảnh kỷ niệm về máy!');
+}
+
+function spawnFloatingHearts(x, y) {
+  const emojis = ['💖', '💕', '🥰', '😘', '🌸', '✨', '👑', '🌷'];
+  for (let i = 0; i < 7; i++) {
+    const h = document.createElement('div');
+    h.className = 'floating-heart-burst';
+    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = `${x}px`;
+    h.style.top = `${y}px`;
+    h.style.setProperty('--dx', `${(Math.random() - 0.5) * 120}px`);
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1800);
+  }
+}
+
+
 window.addEventListener('DOMContentLoaded', () => {
   document.title = 'Thu Phương - Cả một vườn thương 20/10';
 
@@ -1090,6 +1219,12 @@ window.addEventListener('DOMContentLoaded', () => {
       if (e.target === friendModalBackdrop) closeFriendPhotoModal();
     });
   }
+
+    const btnMagicStorm = document.getElementById('btn-magic-storm');
+  if (btnMagicStorm) btnMagicStorm.addEventListener('click', triggerLoveStorm);
+
+  const btnFriendDownload = document.getElementById('btn-friend-download');
+  if (btnFriendDownload) btnFriendDownload.addEventListener('click', downloadCurrentPhoto);
 
   const btnFriendHeart = document.getElementById('btn-friend-heart');
   if (btnFriendHeart) {
