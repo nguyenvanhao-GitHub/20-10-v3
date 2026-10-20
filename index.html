@@ -4,66 +4,49 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Cả một vườn thương - Chúc mừng 20/10</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
+  <title>Thu Phương - Cả một vườn thương 20/10</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌷</text></svg>">
   <link rel="preload" as="image" href="assets/rose-pink.png">
-  <link rel="preload" as="image" href="assets/rosebud-blue.png">
-  <link rel="preload" as="image" href="assets/rosebud-peach.png">
   <link rel="preload" as="image" href="assets/rose-stem-leaves.png">
-  <link rel="preload" as="image" href="assets/friend1-round.png">
-  <link rel="preload" as="image" href="assets/friend2-round.png">
-  <link rel="preload" as="image" href="assets/friend1.jpg">
-  <link rel="preload" as="image" href="assets/friend2.jpg">
-    <link rel="preload" as="image" href="assets/ba/thumb-01.jpg">
-  <link rel="preload" as="image" href="assets/ba/thumb-02.jpg">
-  <link rel="preload" as="image" href="assets/ba/avatar-01.png">
-  <link rel="preload" as="image" href="assets/ba/avatar-02.png">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="preload" as="image" href="assets/phuong/avatar-01.png">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
   <div class="app-container">
-    <!-- Ánh sáng mặt trời dịu nhẹ -->
     <div class="sun-glow"></div>
 
-    <!-- Mây bay lơ lửng -->
     <div class="clouds-container">
       <div class="cloud cloud-1"></div>
       <div class="cloud cloud-2"></div>
       <div class="cloud cloud-3"></div>
     </div>
 
-    <!-- Góc trên bên trái: Tựa đề thơ mộng -->
     <header class="top-header">
-      <div class="top-brand" id="top-brand">Dành bạn, cả một vườn thương.</div>
+      <div class="top-brand" id="top-brand">Dành Thu Phương, cả một vườn thương.</div>
     </header>
 
-    <!-- Nút điều khiển trên cùng bên phải -->
     <div class="top-controls">
-      <button class="control-pill album-pill" id="btn-open-album" aria-label="Mở album ảnh kỷ niệm 20/10">
-        <span class="control-icon">📸</span> Album 20/10 <span class="pill-badge">23</span>
+      <button class="control-pill album-pill" id="btn-open-album" aria-label="Mở album ảnh kỷ niệm 20/10 của Phương">
+        <span class="control-icon">📸</span> Album Phương <span class="pill-badge">12</span>
       </button>
       <button class="control-pill" id="music-toggle-btn" aria-label="Bật hoặc tắt nhạc">
         <span class="control-icon">🎵</span> Bật nhạc
       </button>
     </div>
 
-    <!-- Tiêu đề giới thiệu ở giữa -->
     <div class="intro-text-container" id="intro-text-box">
-      <h1 class="intro-title" id="intro-title">Từ một bông hoa nhỏ...</h1>
-      <p class="intro-subtitle pulse-hint" id="intro-subtitle">Chạm vào hoa, một điều dịu dàng đang chờ bạn</p>
+      <h1 class="intro-title" id="intro-title">Gửi nàng công chúa dịu dàng Thu Phương...</h1>
+      <p class="intro-subtitle pulse-hint" id="intro-subtitle">Chạm vào hoa, một điều dịu dàng đang chờ Phương ✨</p>
     </div>
 
-    <!-- Bông hoa hồng đơn đầu tiên (Hero Rose) -->
     <div class="hero-flower-wrapper" id="hero-flower" title="Chạm vào bông hoa để bắt đầu">
       <div class="hero-click-indicator" id="hero-click-indicator"></div>
       <div class="hero-rose-head" id="hero-rose-head"></div>
       <div class="hero-stem-image" id="hero-stem-image"></div>
     </div>
 
-    <!-- Khu vườn nở rộ (The Blooming Garden) -->
     <div class="garden-container" id="garden-container"></div>
 
-    <!-- Đàn bướm bay lượn dập dờn trong khu vườn -->
     <div class="garden-butterflies-container" id="butterflies-container">
       <div class="butterfly b-pink" id="butterfly-1" title="Chạm vào chú bướm">
         <div class="wing wing-left"></div>
@@ -82,89 +65,52 @@
       </div>
     </div>
 
-    <!-- Canvas hạt phấn & cánh hoa bay -->
     <canvas id="fx-canvas"></canvas>
 
-    <!-- Hai nút điều khiển khi hoa đã nở -->
     <div class="bottom-actions" id="bottom-actions">
       <button class="btn-garden-action" id="btn-read-card">Đọc lại thiệp</button>
       <button class="btn-garden-action" id="btn-replay-bloom">Cho hoa nở lại</button>
     </div>
 
-    <!-- Thiệp đọc chúc mừng 20/10 (Card Modal) -->
+    <!-- Thiệp đọc chúc mừng 20/10 dành riêng cho Phương -->
     <div class="card-modal-backdrop" id="card-modal" role="dialog" aria-modal="true" aria-labelledby="card-title">
       <div class="card-modal-container">
-        <!-- Nút đóng thiệp góc trên -->
         <button class="card-close-btn" id="btn-close-card" title="Đóng thiệp">✕</button>
-
-        <!-- Biểu tượng hoa hồng nhỏ trên đầu thiệp -->
         <div class="card-rose-icon" id="card-rose-icon"></div>
-
-        <!-- Lời xưng hô -->
-        <div class="card-recipient" id="card-recipient">Gửi bạn thương mến,</div>
-
-        <!-- Tiêu đề thiệp -->
+        <div class="card-recipient" id="card-recipient">Gửi Thu Phương thương mến,</div>
         <h2 class="card-main-title" id="card-title">
-          Mong những điều đẹp đẽ<br>luôn nở bên bạn.
+          Mong những điều ngọt ngào nhất<br>luôn nở bên Phương.
         </h2>
 
-        <!-- Dải ảnh kỷ niệm 23 nàng thơ trong thiệp chúc mừng (Phong cách Công Chúa Cute) -->
         <div class="card-carousel-section">
           <div class="card-carousel-header">
-            <span class="card-carousel-title">👑 Góc Kỷ Niệm 23 Nàng Thơ 20/10</span>
-            <button class="btn-card-view-all" id="btn-card-view-all">Xem tất cả (23) ➔</button>
+            <span class="card-carousel-title">👑 Góc Kỷ Niệm Của Thu Phương</span>
+            <button class="btn-card-view-all" id="btn-card-view-all">Xem tất cả ảnh (12) ➔</button>
           </div>
-          <div class="card-carousel-track" id="card-carousel-track">
-            <!-- 23 ảnh polaroid sinh tự động bằng JS -->
-          </div>
+          <div class="card-carousel-track" id="card-carousel-track"></div>
         </div>
 
-        <!-- Nội dung thư chúc -->
-        <div class="card-body-text">
-          <p class="card-paragraph">
-            Một bông hoa có thể làm một ngày thêm đẹp.<br>
-            Còn bạn làm thế giới này dịu dàng hơn.
-          </p>
+        <div class="card-body-text"></div>
 
-          <p class="card-paragraph">
-            Nhân ngày 20/10 chúc bạn luôn được yêu thương, trân trọng và có thật nhiều niềm vui. Mong bạn đủ bình yên để tận hưởng những điều nhỏ bé, đủ tự tin để theo đuổi những điều mình yêu.
-          </p>
-
-          <p class="card-paragraph">
-            Hôm nay và cả những ngày sau,<br>
-            hãy cứ rạng rỡ theo cách của riêng mình nhé.
-          </p>
-
-          <div class="card-closing">
-            Gửi bạn thật nhiều thương mến ♡
-          </div>
-        </div>
-
-        <!-- Nút đóng thiệp để ngắm lại vườn hoa -->
         <div class="card-action-bar">
           <button class="btn-view-garden" id="btn-view-garden">
             Ngắm vườn hoa
           </button>
         </div>
 
-        <!-- Các tiện ích phụ: Sao chép lời chúc & Tùy chỉnh link theo tên -->
         <div class="card-secondary-actions">
-          <button class="btn-card-sub" id="btn-copy-wish" title="Sao chép toàn bộ lời chúc">
+          <button class="btn-card-sub" id="btn-copy-wish" title="Sao chép toàn bộ lời chúc gửi Phương">
             📋 Sao chép lời chúc
-          </button>
-          <button class="btn-card-sub" id="btn-custom-link" title="Tạo link chúc mừng mang tên riêng">
-            ✨ Tạo link theo tên
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Khung xem ảnh kỷ niệm bạn bè khi chạm vào bông hoa (Princess Lightbox Modal) -->
+    <!-- Modal xem ảnh sắc nét -->
     <div class="card-modal-backdrop" id="friend-photo-modal" role="dialog" aria-modal="true" aria-labelledby="friend-modal-name">
       <div class="card-modal-container friend-modal-box">
         <button class="card-close-btn" id="btn-close-friend-modal" title="Đóng (Phím Esc)">✕</button>
 
-        <!-- Nút điều hướng ảnh trước / sau -->
         <button class="modal-nav-btn prev-btn" id="btn-prev-photo" title="Ảnh trước (Phím ←)">‹</button>
         <button class="modal-nav-btn next-btn" id="btn-next-photo" title="Ảnh tiếp theo (Phím →)">›</button>
 
@@ -172,15 +118,15 @@
           <span class="princess-crown-icon">👑</span>
         </div>
         <div class="friend-modal-photo-wrap">
-          <img id="friend-modal-img" src="assets/ba/photo-01.jpg" alt="Ảnh kỷ niệm 20/10" class="friend-modal-img">
-          <div class="friend-modal-badge" id="friend-modal-badge">👑 20/10 Rực Rỡ & Tỏa Sáng 🌸</div>
+          <img id="friend-modal-img" src="assets/phuong/photo-01.jpg" alt="Ảnh Thu Phương" class="friend-modal-img">
+          <div class="friend-modal-badge" id="friend-modal-badge">👑 Thu Phương Dịu Dàng 🌷</div>
         </div>
         <div class="princess-modal-bow">🎀</div>
         <div class="friend-modal-content">
-          <div class="photo-counter-tag" id="photo-counter-tag">Ảnh 1 / 23</div>
-          <h3 class="friend-modal-name" id="friend-modal-name">Nàng Công Chúa Rạng Rỡ</h3>
+          <div class="photo-counter-tag" id="photo-counter-tag">Ảnh 1 / 12</div>
+          <h3 class="friend-modal-name" id="friend-modal-name">Thu Phương Dịu Dàng</h3>
           <p class="friend-modal-wish-text" id="friend-modal-wish">
-            Chúc nàng công chúa ngày 20/10 luôn rạng ngời xinh đẹp, tự tin, nụ cười luôn tỏa nắng và đón nhận muôn vàn yêu thương ngọt ngào nhất! 💖✨
+            Chúc Thu Phương ngày 20/10 ngập tràn niềm vui, nụ cười luôn nở trên môi và gặp thật nhiều may mắn ngọt ngào! 💕
           </p>
           <div class="friend-modal-actions">
             <button class="btn-friend-heart" id="btn-friend-heart">
@@ -191,27 +137,16 @@
       </div>
     </div>
 
-    <!-- Triển lãm Album Kỷ Niệm 20/10 (Album Gallery Modal) -->
+    <!-- Triển lãm Album Kỷ Niệm 12 ảnh của Phương -->
     <div class="card-modal-backdrop album-modal-backdrop" id="album-gallery-modal" role="dialog" aria-modal="true" aria-labelledby="album-modal-title">
       <div class="card-modal-container album-modal-container">
         <button class="card-close-btn" id="btn-close-album-modal" title="Đóng Album">✕</button>
-
         <div class="album-modal-header">
           <div class="album-crown-icon">👑</div>
-          <h2 class="album-modal-title" id="album-modal-title">🌸 Triển Lãm Kỷ Niệm 20/10 🌸</h2>
-          <p class="album-modal-subtitle">Gửi trọn yêu thương đến những đóa hoa rực rỡ nhất!</p>
-
-          <!-- Thanh lọc danh mục ảnh -->
-          <div class="album-filter-tabs">
-            <button class="album-tab active" data-filter="all">Tất cả (23)</button>
-            <button class="album-tab" data-filter="portrait">Nàng Thơ (18)</button>
-            <button class="album-tab" data-filter="landscape">Khoảnh Khắc Tập Thể (5)</button>
-          </div>
+          <h2 class="album-modal-title" id="album-modal-title">🌸 Triển Lãm Kỷ Niệm Thu Phương 🌸</h2>
+          <p class="album-modal-subtitle">Trọn bộ 12 khoảnh khắc rạng rỡ của Thu Phương 💖</p>
         </div>
-
-        <!-- Lưới ảnh Polaroid nghệ thuật -->
         <div class="album-masonry-grid" id="album-masonry-grid"></div>
-
         <div class="album-modal-footer">
           <button class="btn-view-garden" id="btn-album-back-garden">
             🌸 Về ngắm vườn hoa
@@ -219,8 +154,9 @@
         </div>
       </div>
     </div>
+
   </div>
 
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=20"></script>
 </body>
 </html>

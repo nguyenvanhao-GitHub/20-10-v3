@@ -2133,3 +2133,244 @@ html, body {
     transform: scale(1.1) !important;
   }
 }
+
+/* ==========================================================================
+   PRINCESS SELECTION PORTAL (CỔNG CHỌN NÀNG THƠ CHO TRANG CHỦ)
+   ========================================================================== */
+.portal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: radial-gradient(circle at center, rgba(30, 15, 25, 0.82), rgba(12, 6, 12, 0.94));
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portal-container {
+  width: 100%;
+  max-width: 680px;
+  background: linear-gradient(145deg, #fffafb, #fff0f5);
+  border-radius: 28px;
+  padding: 34px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(255, 182, 193, 0.45);
+  border: 2px solid rgba(255, 215, 225, 0.9);
+  text-align: center;
+  position: relative;
+  animation: portalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes portalPop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.portal-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 16px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(255, 117, 140, 0.35);
+}
+
+.portal-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: #6a1a36;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.portal-subtitle {
+  font-size: 14.5px;
+  color: #7d4455;
+  margin-bottom: 26px;
+  line-height: 1.6;
+}
+
+.portal-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.portal-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px 16px;
+  border: 2px solid #ffd6e0;
+  box-shadow: 0 8px 24px rgba(230, 100, 140, 0.12);
+  transition: transform 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.portal-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 36px rgba(255, 105, 180, 0.28);
+  border-color: #ff94b4;
+}
+
+.portal-avatar-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 14px;
+}
+
+.portal-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 0 20px rgba(255, 182, 193, 0.9), 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.portal-crown {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  filter: drop-shadow(0 2px 6px rgba(230, 160, 20, 0.8));
+}
+
+.portal-card-name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #7a1538;
+  margin: 0 0 4px 0;
+}
+
+.portal-card-desc {
+  font-size: 12.5px;
+  color: #8c5366;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  min-height: 35px;
+}
+
+.btn-portal-enter {
+  width: 100%;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 117, 140, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 8px;
+  text-decoration: none;
+  display: block;
+}
+
+.btn-portal-enter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 117, 140, 0.6);
+}
+
+.btn-portal-copy {
+  background: rgba(255, 230, 240, 0.6);
+  border: 1px dashed #ff9bb2;
+  border-radius: 9999px;
+  color: #ad2852;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.btn-portal-copy:hover {
+  background: #ffe3ec;
+}
+
+.portal-footer-hint {
+  font-size: 12.5px;
+  color: #9c6074;
+  margin-top: 10px;
+}
+
+@media (max-width: 580px) {
+  .portal-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .portal-container {
+    padding: 24px 18px;
+  }
+  .portal-avatar-wrap {
+    width: 90px;
+    height: 90px;
+  }
+  .portal-title {
+    font-size: 22px;
+  }
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION (THÔNG BÁO NHẸ SAO CHÉP THÀNH CÔNG)
+   ========================================================================== */
+.action-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  background: rgba(45, 20, 32, 0.92);
+  color: #ffffff;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 105, 180, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.35s ease;
+  z-index: 2000;
+  white-space: nowrap;
+}
+
+.action-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Nút chuyển đổi bạn khác trên top bar */
+.switch-pill {
+  background: linear-gradient(135deg, rgba(255, 235, 245, 0.95), rgba(255, 220, 235, 0.95)) !important;
+  color: #a8204c !important;
+  border: 1.2px solid #ffb3c6 !important;
+}
+
+.switch-pill:hover {
+  background: linear-gradient(135deg, #ffccd7, #ffb3c6) !important;
+  transform: translateY(-2px);
+}
