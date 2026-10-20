@@ -34,6 +34,7 @@ const PHUONG_CONFIG = {
       title: 'Nụ Cười Đáng Yêu',
       badge: '👑 Dễ Thương Vô Đối 🎀',
       wish: 'Chúc Thu Phương ngày 20/10 ngập tràn niềm vui, nụ cười luôn nở trên môi và gặp thật nhiều may mắn ngọt ngào! 💕',
+      thumb: 'assets/phuong/thumb-01.jpg',
       full: 'assets/phuong/photo-01.jpg',
       avatar: 'assets/phuong/avatar-01.png'
     },
@@ -42,6 +43,7 @@ const PHUONG_CONFIG = {
       title: 'Tà Áo Dài Thướt Tha',
       badge: '🌸 Nàng Thơ Dịu Dàng 👑',
       wish: 'Chúc nàng công chúa Thu Phương luôn xinh đẹp, duyên dáng và đón nhận muôn vàn yêu thương trọn vẹn! 🌸👑',
+      thumb: 'assets/phuong/thumb-02.jpg',
       full: 'assets/phuong/photo-02.jpg',
       avatar: 'assets/phuong/avatar-02.png'
     },
@@ -50,6 +52,7 @@ const PHUONG_CONFIG = {
       title: 'Bên Nhành Hoa Ly',
       badge: '💐 Thanh Khiết & Kiêu Sa ✨',
       wish: 'Như đóa hoa ly thanh khiết, chúc Phương luôn dịu dàng, an yên và toát lên vẻ đẹp thanh lịch khó quên! 💐✨',
+      thumb: 'assets/phuong/thumb-03.jpg',
       full: 'assets/phuong/photo-03.jpg',
       avatar: 'assets/phuong/avatar-03.png'
     },
@@ -58,6 +61,7 @@ const PHUONG_CONFIG = {
       title: 'Góc Nhỏ Bình Yên',
       badge: '🧸 Ấm Áp & Ngọt Ngào 💖',
       wish: 'Chúc bạn luôn có những giây phút thư thái, bình an bên những điều mình yêu thích và luôn được cưng chiều! 🧸💖',
+      thumb: 'assets/phuong/thumb-04.jpg',
       full: 'assets/phuong/photo-04.jpg',
       avatar: 'assets/phuong/avatar-04.png'
     },
@@ -66,6 +70,7 @@ const PHUONG_CONFIG = {
       title: 'Năng Động Trẻ Trung',
       badge: '🌿 Năng Lượng Tươi Xanh ☀️',
       wish: 'Chúc Phương luôn tràn đầy năng lượng tươi trẻ, nụ cười rạng rỡ, tự tin sải bước và chinh phục mọi mục tiêu! 🌿☀️',
+      thumb: 'assets/phuong/thumb-05.jpg',
       full: 'assets/phuong/photo-05.jpg',
       avatar: 'assets/phuong/avatar-05.png'
     },
@@ -74,6 +79,7 @@ const PHUONG_CONFIG = {
       title: 'Nét Đẹp Tự Nhiên',
       badge: '✨ Tinh Khôi Mắt Biếc 💖',
       wish: 'Chúc đôi mắt bạn luôn lấp lánh niềm vui và nụ cười luôn rạng rỡ trong suốt 365 ngày của năm! ✨',
+      thumb: 'assets/phuong/thumb-06.jpg',
       full: 'assets/phuong/photo-06.jpg',
       avatar: 'assets/phuong/avatar-06.png'
     },
@@ -82,6 +88,7 @@ const PHUONG_CONFIG = {
       title: 'Trà Chiều Thơ Mộng',
       badge: '☕ Dịu Ngọt & Thanh Lịch 🌸',
       wish: 'Chúc Phương mỗi ngày trôi qua đều ngọt ngào, thi vị và ngập tràn hạnh phúc dịu êm! ☕🍰',
+      thumb: 'assets/phuong/thumb-07.jpg',
       full: 'assets/phuong/photo-07.jpg',
       avatar: 'assets/phuong/avatar-07.png'
     },
@@ -90,6 +97,7 @@ const PHUONG_CONFIG = {
       title: 'Nhí Nhảnh Đáng Yêu',
       badge: '🎀 Hồn Nhiên Yêu Đời 💕',
       wish: 'Chúc bạn mãi giữ trọn vẻ nhí nhảnh, đáng yêu và luôn là niềm vui của những người xung quanh! 🎀💖',
+      thumb: 'assets/phuong/thumb-08.jpg',
       full: 'assets/phuong/photo-08.jpg',
       avatar: 'assets/phuong/avatar-08.png'
     },
@@ -98,6 +106,7 @@ const PHUONG_CONFIG = {
       title: 'Nụ Cười Tỏa Nắng',
       badge: '☀️ Rạng Rỡ Say Đắm 🌷',
       wish: 'Chúc nụ cười rạng ngời này sẽ luôn xua tan mọi mỏi mệt và mang lại vạn điều may mắn cho bạn! 🌷',
+      thumb: 'assets/phuong/thumb-09.jpg',
       full: 'assets/phuong/photo-09.jpg',
       avatar: 'assets/phuong/avatar-09.png'
     },
@@ -106,6 +115,7 @@ const PHUONG_CONFIG = {
       title: 'Dấu Chân Kỷ Niệm',
       badge: '🏰 Chuyến Đi Thanh Xuân 🌸',
       wish: 'Chúc những chuyến hành trình phía trước của Phương luôn ngập tràn hoa thơm, cảnh đẹp và kỷ niệm đáng nhớ! 🏰🌸',
+      thumb: 'assets/phuong/thumb-10.jpg',
       full: 'assets/phuong/photo-10.jpg',
       avatar: 'assets/phuong/avatar-10.png'
     },
@@ -114,6 +124,7 @@ const PHUONG_CONFIG = {
       title: 'Nét Duyên Trong Trẻo',
       badge: '💫 Bình Yên & May Mắn ✨',
       wish: 'Chúc bạn luôn bình an, tâm hồn thanh thản và luôn được bao bọc bởi những tình cảm chân thành nhất! 💫',
+      thumb: 'assets/phuong/thumb-11.jpg',
       full: 'assets/phuong/photo-11.jpg',
       avatar: 'assets/phuong/avatar-11.png'
     }
@@ -269,13 +280,14 @@ function buildGarden() {
   // =========================================================================
   // VƯỜN HOA CHI CHÍT DÀY ĐẶC NHƯ BAN ĐẦU (~150-180 HOA TRÊN DESKTOP, ~90 TRÊN MOBILE)
   // =========================================================================
-  const countT1 = Math.round(Math.max(16, Math.min(32, width / 44)));
-  const countT2 = Math.round(Math.max(18, Math.min(36, width / 40)));
-  const countT3 = Math.round(Math.max(18, Math.min(36, width / 40)));
-  const countT4 = Math.round(Math.max(16, Math.min(34, width / 38)));
-  const countT5 = Math.round(Math.max(10, Math.min(18, width / 80)));
-  const fillerCount = Math.round(Math.max(16, Math.min(32, width / 42)));
-  const accentBudCount = isMobile ? 8 : 16;
+  // Số lượng hoa tối ưu 60FPS: Dày đặc chi chít nhưng chạy siêu mượt không lag
+  const countT1 = isMobile ? 10 : 20;
+  const countT2 = isMobile ? 10 : 20;
+  const countT3 = isMobile ? 9 : 18;
+  const countT4 = isMobile ? 8 : 15;
+  const countT5 = isMobile ? 5 : 10;
+  const fillerCount = isMobile ? 6 : 14;
+  const accentBudCount = isMobile ? 6 : 12;
 
   // TẦNG 1: Tiền cảnh phủ sát đáy (hoa to, dày đặc ôm trọn chân vườn)
   for (let i = 0; i < countT1; i++) {
@@ -766,7 +778,7 @@ function renderAlbumGrid() {
     card.innerHTML = `
       <div class="album-polaroid-tape"></div>
       <div class="album-polaroid-media">
-        <img src="${item.full}" alt="${item.title}" class="album-polaroid-img" loading="lazy">
+        <img src="${item.thumb || item.full}" alt="${item.title}" class="album-polaroid-img" loading="lazy">
         <div class="album-media-badge">${item.badge}</div>
       </div>
       <div class="album-polaroid-desc">
