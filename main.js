@@ -116,14 +116,6 @@ const PHUONG_CONFIG = {
       wish: 'Chúc bạn luôn bình an, tâm hồn thanh thản và luôn được bao bọc bởi những tình cảm chân thành nhất! 💫',
       full: 'assets/phuong/photo-11.jpg',
       avatar: 'assets/phuong/avatar-11.png'
-    },
-    {
-      id: 12,
-      title: 'Bên Khung Cửa Nắng',
-      badge: '🌹 Hướng Về Ánh Sáng ☀️',
-      wish: 'Chúc Thu Phương luôn hướng về phía ánh sáng, rực rỡ và tỏa ngát hương thơm như đóa hoa đầu mùa! ☀️🌹',
-      full: 'assets/phuong/photo-12.jpg',
-      avatar: 'assets/phuong/avatar-12.png'
     }
   ]
 };
